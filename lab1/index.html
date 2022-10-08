@@ -23,6 +23,18 @@
             <label for="id">Numer dowodu:</label>
             <input id="id" pattern="[A-Z]{3}\d{6}" maxlength="9" required>
         </div>
+        <div style="display: flex;">
+            <label for="ipv4">IPv4:</label>
+            <input id="ipv4" pattern="(((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))[.]){3}((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))" required>
+        </div>
+        <div style="display: flex;">
+            <label for="website">Strona www:</label>
+            <input id="website" type="url" required>
+        </div>
+        <div style="display: flex;">
+            <label for="small-path">Scieżka dysku (małe litery):</label>
+            <input id="small-path" pattern="[a-zA-z]:(\\(\w+))+" required>
+        </div>
         <button type="submit" style="width: 128px; margin-left: 260px;">Submit</button>
     </form>
 </body>
