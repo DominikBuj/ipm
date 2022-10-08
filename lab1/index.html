@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script> 
     <title>IPM</title>
 </head>
 <body>
@@ -33,8 +34,8 @@
             <input id="website" type="url" placeholder="https://www.google.com/" required>
         </div>
         <div style="display: flex;">
-            <label for="small-path">Scieżka dysku (małe litery):</label>
-            <input id="small-path" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
+            <label for="windows-path">Scieżka dysku (małe litery):</label>
+            <input id="windows-path" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
             placeholder="C:\windows\system" required>
         </div>
         <div style="display: flex;">
@@ -42,11 +43,16 @@
             <input id="file-path" pattern="/etc/(\w)+" placeholder="/etc/text" required>
         </div>
         <div style="display: flex;">
+            <label for="ipv6">IPv6:</label>
+            <input id="ipv6" pattern="(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
+            placeholder="785c:e0fb:ab25:8f58:918f:d22a:b734:b99c" required>
+        </div>
+        <div style="display: flex;">
             <label for="phone-number">Numer telefonu:</label>
             <input id="phone-number" type="tel" placeholder="123456789" required>
         </div>
         <div>
-            <button>Losowe dane</button>
+            <button id="random" type="button" value="random" onclick="randomValues();">Losowe dane</button>
             <button type="submit">Submit</button>
         </div>
     </form>
