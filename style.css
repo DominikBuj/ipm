@@ -1,0 +1,16 @@
+label {
+    width: 128px;
+    margin-right: 4px;
+}
+
+input {
+    width: 256px;
+}
+
+input:valid {
+    border: lightgreen solid 2px;
+}
+
+input:invalid {
+    border: lightcoral solid 2px;
+}
