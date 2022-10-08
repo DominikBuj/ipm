@@ -34,9 +34,14 @@
             <input id="website" type="url" placeholder="https://www.google.com/" required>
         </div>
         <div style="display: flex;">
-            <label for="windows-path">Scieżka dysku (małe litery):</label>
-            <input id="windows-path" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
+            <label for="windows-path-small">Scieżka dysku (małe litery):</label>
+            <input id="windows-path-small" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
             placeholder="C:\windows\system" required>
+        </div>
+        <div style="display: flex;">
+            <label for="windows-path">Scieżka dysku (małe i duże litery):</label>
+            <input id="windows-path" oninput="validateWindowsPath()"
+            placeholder="C:\WindowS\system" required>
         </div>
         <div style="display: flex;">
             <label for="file-path">Scieżka pliku w folderze etc:</label>
@@ -52,7 +57,7 @@
             <input id="phone-number" type="tel" placeholder="123456789" required>
         </div>
         <div>
-            <button id="random" type="button" value="random" onclick="randomValues();">Zalosuj dane</button>
+            <button id="random" type="button" value="random" onclick="randomValues();" style="margin-left: 260px;">Zalosuj dane</button>
         </div>
     </div>
 </body>
