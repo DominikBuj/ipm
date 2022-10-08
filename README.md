@@ -1,2 +1,0 @@
-# ipm
-Interfejsy platform mobilnych
