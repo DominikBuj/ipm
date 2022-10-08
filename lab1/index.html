@@ -8,7 +8,7 @@
     <title>IPM</title>
 </head>
 <body>
-    <form style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex;">
             <label for="email">Email:</label>
             <input id="email" type="email" placeholder="249073@edu.p.lodz.pl" required></div>
@@ -52,9 +52,8 @@
             <input id="phone-number" type="tel" placeholder="123456789" required>
         </div>
         <div>
-            <button id="random" type="button" value="random" onclick="randomValues();">Losowe dane</button>
-            <button type="submit">Submit</button>
+            <button id="random" type="button" value="random" onclick="randomValues();">Zalosuj dane</button>
         </div>
-    </form>
+    </div>
 </body>
 </html>
