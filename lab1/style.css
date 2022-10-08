@@ -14,3 +14,7 @@ input:valid {
 input:invalid {
     border: lightcoral solid 2px;
 }
+
+button {
+    width: 128px;
+}

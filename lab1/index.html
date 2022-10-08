@@ -10,32 +10,45 @@
     <form style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex;">
             <label for="email">Email:</label>
-            <input id="email" type="email" required></div>
+            <input id="email" type="email" placeholder="249073@edu.p.lodz.pl" required></div>
         <div style="display: flex;">
             <label for="area-code">Kod pocztowy:</label>
-            <input id="area-code" pattern="\d{2}-?\d{3}" maxlength="6" required>
+            <input id="area-code" pattern="\d{2}-?\d{3}" placeholder="12-345" maxlength="6" required>
         </div>
         <div style="display: flex;">
             <label for="nip">NIP:</label>
-            <input id="nip" pattern="[A-Z]{2}\d{10}" maxlength="12" required>
+            <input id="nip" pattern="[A-Z]{2}\d{10}" placeholder="PL1234567890" maxlength="12" required>
         </div>
         <div style="display: flex;">
             <label for="id">Numer dowodu:</label>
-            <input id="id" pattern="[A-Z]{3}\d{6}" maxlength="9" required>
+            <input id="id" pattern="[A-Z]{3}\d{6}" placeholder="ABC123456" maxlength="9" required>
         </div>
         <div style="display: flex;">
             <label for="ipv4">IPv4:</label>
-            <input id="ipv4" pattern="(((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))[.]){3}((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))" required>
+            <input id="ipv4" pattern="(((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))[.]){3}((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))"
+            placeholder="255.255.255.255" required>
         </div>
         <div style="display: flex;">
             <label for="website">Strona www:</label>
-            <input id="website" type="url" required>
+            <input id="website" type="url" placeholder="https://www.google.com/" required>
         </div>
         <div style="display: flex;">
             <label for="small-path">Scieżka dysku (małe litery):</label>
-            <input id="small-path" pattern="[a-zA-z]:(\\(\w+))+" required>
+            <input id="small-path" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
+            placeholder="C:\windows\system" required>
         </div>
-        <button type="submit" style="width: 128px; margin-left: 260px;">Submit</button>
+        <div style="display: flex;">
+            <label for="file-path">Scieżka pliku w folderze etc:</label>
+            <input id="file-path" pattern="/etc/(\w)+" placeholder="/etc/text" required>
+        </div>
+        <div style="display: flex;">
+            <label for="phone-number">Numer telefonu:</label>
+            <input id="phone-number" type="tel" placeholder="123456789" required>
+        </div>
+        <div>
+            <button>Losowe dane</button>
+            <button type="submit">Submit</button>
+        </div>
     </form>
 </body>
 </html>
