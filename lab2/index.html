@@ -31,7 +31,7 @@
         </div>
         <div style="display: flex;">
             <label for="website">Strona www:</label>
-            <input id="website" type="url" placeholder="https://www.google.com/" required>
+            <input id="website" type="string" oninput="validateWebsite()" placeholder="https://www.google.com/" required>
         </div>
         <div style="display: flex;">
             <label for="windows-path-small">Scieżka dysku (małe litery):</label>
@@ -57,7 +57,7 @@
             <input id="phone-number" type="tel" placeholder="123456789" required>
         </div>
         <div>
-            <button id="random" type="button" value="random" onclick="randomValues();validateWindowsPath();" style="margin-left: 260px;">Zalosuj dane</button>
+            <button id="random" type="button" value="random" onclick="randomValues();validateWindowsPath();validateWebsite();" style="margin-left: 260px;">Zalosuj dane</button>
         </div>
     </div>
 </body>
