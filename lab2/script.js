@@ -24,7 +24,8 @@ const randomValuesArray = [
     ['+1 202-918-2132', '+376 690 065 611'],
     ['2022-01-01', '2000-12-24'],
     ['21:21', '11:11'],
-    ['10:10 AM', '11:21 PM']
+    ['10:10 AM', '11:21 PM'],
+    ['#e66465', '#f6b73c']
 ]
 
 function getRandomInt(min, max) {
@@ -49,6 +50,7 @@ function randomValues() {
     document.getElementById('date-limited').value = new Date(new Date().setDate(currentWeekMonday.getDate() + getRandomInt(0, 4))).toLocaleDateString('en-ca');
     document.getElementById('time-24').value = randomValuesArray[12][getRandomInt(0, 1)];
     document.getElementById('time-12').value = randomValuesArray[13][getRandomInt(0, 1)];
+    document.getElementById('color').value = randomValuesArray[14][getRandomInt(0, 1)];
 }
 
 function validateWindowsPath() {
