@@ -1,11 +1,13 @@
 
+const today = new Date();
+const currentWeekMonday = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 6 : today.getDay() - 1)))
+const currentWeekFriday = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 2 : today.getDay() - 5)))
+
 function init() {
     
-    const today = new Date();
+    document.getElementById('date-limited').min = currentWeekMonday.toLocaleDateString('en-ca');
+    document.getElementById('date-limited').max = currentWeekFriday.toLocaleDateString('en-ca');
 
-    document.getElementById('date-limited').min = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 6 : today.getDay() - 1))).toLocaleDateString('en-ca');
-    document.getElementById('date-limited').max = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 2 : today.getDay() - 5))).toLocaleDateString('en-ca');
-    
 }
 
 const randomValuesArray = [
@@ -19,7 +21,8 @@ const randomValuesArray = [
     ['D:\\wiNnt\\test', 'd:\\msdOS'],
     ['/etc/aaaa', '/etc/bBbbb'],
     ['da88:d5fa:d823:efe5:1d30:c853:d297:578b', 'c78f:ffb7:e9f4:d28f:ee4b:adce:9122:8402'],
-    ['+1 202-918-2132', '+376 690 065 611']
+    ['+1 202-918-2132', '+376 690 065 611'],
+    ['2022-01-01', '2000-12-24']
 ]
 
 function getRandomInt(min, max) {
@@ -40,6 +43,8 @@ function randomValues() {
     document.getElementById('file-path').value = randomValuesArray[8][getRandomInt(0, 1)];
     document.getElementById('ipv6').value = randomValuesArray[9][getRandomInt(0, 1)];
     document.getElementById('phone-number').value = randomValuesArray[10][getRandomInt(0, 1)];
+    document.getElementById('date').value = randomValuesArray[11][getRandomInt(0, 1)];
+    document.getElementById('date-limited').value = new Date(new Date().setDate(currentWeekMonday.getDate() + getRandomInt(0, 4))).toLocaleDateString('en-ca');
 }
 
 function validateWindowsPath() {
