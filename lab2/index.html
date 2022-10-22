@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script> 
-    <title>IPM</title>
+    <title>IPM - Lab 2</title>
 </head>
 <body>
     <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex;">
             <label for="email">Email:</label>
-            <input id="email" type="email" placeholder="249073@edu.p.lodz.pl" required></div>
+            <input id="email" type="email" placeholder="249073@edu.p.lodz.pl" required>
+        </div>
         <div style="display: flex;">
             <label for="area-code">Kod pocztowy:</label>
             <input id="area-code" pattern="\d{2}-?\d{3}" placeholder="12-345" maxlength="6" required>
@@ -55,6 +56,10 @@
         <div style="display: flex;">
             <label for="phone-number">Numer telefonu:</label>
             <input id="phone-number" type="tel" placeholder="123456789" required>
+        </div>
+        <div style="display: flex;">
+            <label for="date">Data:</label>
+            <input id="date" type="date" required>
         </div>
         <div>
             <button id="random" type="button" value="random" onclick="randomValues();validateWindowsPath();validateWebsite();" style="margin-left: 260px;">Zalosuj dane</button>
