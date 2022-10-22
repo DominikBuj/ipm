@@ -1,3 +1,13 @@
+
+function init() {
+    
+    const today = new Date();
+
+    document.getElementById('date-limited').min = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 6 : today.getDay() - 1))).toLocaleDateString('en-ca');
+    document.getElementById('date-limited').max = new Date(new Date().setDate(new Date().getDate() - (today.getDay() == 0 ? 2 : today.getDay() - 5))).toLocaleDateString('en-ca');
+    
+}
+
 const randomValuesArray = [
     ['safinatka@jamtogel.org', 'pashocek@email-temp.com'],
     ['11-111', '22-222'],

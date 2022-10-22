@@ -7,7 +7,7 @@
     <script src="script.js"></script> 
     <title>IPM - Lab 2</title>
 </head>
-<body>
+<body onload="init();">
     <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex;">
             <label for="email">Email:</label>
@@ -60,6 +60,10 @@
         <div style="display: flex;">
             <label for="date">Data:</label>
             <input id="date" type="date" required>
+        </div>
+        <div style="display: flex;">
+            <label for="date-limited">Data (dni pracujące):</label>
+            <input id="date-limited" type="date" required>
         </div>
         <div>
             <button id="random" type="button" value="random" onclick="randomValues();validateWindowsPath();validateWebsite();" style="margin-left: 260px;">Zalosuj dane</button>
