@@ -22,7 +22,9 @@ const randomValuesArray = [
     ['/etc/aaaa', '/etc/bBbbb'],
     ['da88:d5fa:d823:efe5:1d30:c853:d297:578b', 'c78f:ffb7:e9f4:d28f:ee4b:adce:9122:8402'],
     ['+1 202-918-2132', '+376 690 065 611'],
-    ['2022-01-01', '2000-12-24']
+    ['2022-01-01', '2000-12-24'],
+    ['21:21', '11:11'],
+    ['10:10 AM', '11:21 PM']
 ]
 
 function getRandomInt(min, max) {
@@ -45,6 +47,8 @@ function randomValues() {
     document.getElementById('phone-number').value = randomValuesArray[10][getRandomInt(0, 1)];
     document.getElementById('date').value = randomValuesArray[11][getRandomInt(0, 1)];
     document.getElementById('date-limited').value = new Date(new Date().setDate(currentWeekMonday.getDate() + getRandomInt(0, 4))).toLocaleDateString('en-ca');
+    document.getElementById('time-24').value = randomValuesArray[12][getRandomInt(0, 1)];
+    document.getElementById('time-12').value = randomValuesArray[13][getRandomInt(0, 1)];
 }
 
 function validateWindowsPath() {
