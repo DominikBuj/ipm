@@ -38,3 +38,18 @@ listElements.forEach(listElement => {
     });
 
 });
+
+function generateRectangle() {
+
+    console.log('worked');
+    const generationAreaRectangle = document.getElementById('generation-area').getBoundingClientRect();
+
+    const rectangle = document.createElement('div');
+    rectangle.classList.add('rectangle');
+    rectangle.style.top = `${getRandomInt(generationAreaRectangle.top + 8, generationAreaRectangle.bottom - 64 - 8)}px`;
+    rectangle.style.left = `${getRandomInt(generationAreaRectangle.left + 8, generationAreaRectangle.right - 64 - 8)}px`;
+    rectangle.style.background = `rgb(${getRandomInt(0, 255)}, ${getRandomInt(0, 255)}, ${getRandomInt(0, 255)})`;
+    
+    document.getElementById('platform-area').appendChild(rectangle);
+
+}

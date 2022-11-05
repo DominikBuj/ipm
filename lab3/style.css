@@ -66,4 +66,15 @@ li {
 
 #platform-area {
     background: #F0FFFF;
+    -webkit-box-shadow: inset 0px 0px 24px 12px rgba(66, 68, 90, 1);
+    -moz-box-shadow: inset 0px 0px 24px 12px rgba(66, 68, 90, 1);
+    box-shadow: inset 0px 0px 24px 12px rgba(66, 68, 90, 1);
+}
+
+.rectangle {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border: 8px solid;
+    border-radius: 4px;
 }
