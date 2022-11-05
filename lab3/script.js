@@ -22,7 +22,6 @@ listElements.forEach(listElement => {
 
     listElement.addEventListener('dragstart', (event) => {
         listElement.style.opacity = '0.5';
-        // listElement.style.borderStyle = 'dashed';
         draggedElement = listElement;
     });
 
@@ -34,7 +33,6 @@ listElements.forEach(listElement => {
 
     listElement.addEventListener('dragend', (event) => {
         listElement.style.opacity = '1';
-        // listElement.style.borderStyle = 'solid';
     });
 
 });
