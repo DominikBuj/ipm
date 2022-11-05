@@ -64,6 +64,22 @@ function dragStart(event) {
     dragStartY = event.clientY;
 };
 
+function checkCollision(draggedElement, collisionElement) {
+
+    const draggedElementRectangle = draggedElement.getBoundingClientRect();
+    const collisionElementRectangle = collisionElement.getBoundingClientRect();
+
+    const isColliding = !(
+        (draggedElementRectangle.bottom < (collisionElementRectangle.y)) ||
+        (draggedElementRectangle.y > (collisionElementRectangle.y + collisionElementRectangle.height)) ||
+        (draggedElementRectangle.right < collisionElementRectangle.x) ||
+        (draggedElementRectangle.x > (collisionElementRectangle.x + collisionElementRectangle.width))
+    );
+
+    return isColliding;
+
+}
+
 function checkAreaContainment(rectangle) {
 
     let isInsidePlatformArea = false;
@@ -93,6 +109,15 @@ function drag(event) {
     if (draggedElement === null) return;
     event.preventDefault();
 
+    const isInsidePlatformArea = checkAreaContainment(draggedElement);
+
+    if (isInsidePlatformArea) {
+        const collisionElements = Array.from(document.querySelectorAll('.rectangle')).filter(collisionElement => collisionElement !== draggedElement);
+        for (const collisionElement of collisionElements) {
+            if (checkCollision(draggedElement, collisionElement)) return;
+        }
+    }
+
     const draggedElementX = draggedElement.offsetLeft + (event.clientX - dragStartX);
     const draggedElementY = draggedElement.offsetTop + (event.clientY - dragStartY);
 
@@ -100,8 +125,6 @@ function drag(event) {
     draggedElement.style.left = `${draggedElementX}px`;
     dragStartX = event.clientX;
     dragStartY = event.clientY;
-
-    const isInsidePlatformArea = checkAreaContainment(draggedElement);
 
 };
 
