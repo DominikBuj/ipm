@@ -64,18 +64,44 @@ function dragStart(event) {
     dragStartY = event.clientY;
 };
 
+function checkAreaContainment(rectangle) {
+
+    let isInsidePlatformArea = false;
+
+    const rectangleRectangle = rectangle.getBoundingClientRect();
+    const platformAreaRectangle = document.getElementById('platform-area').getBoundingClientRect();
+    const generationAreaRectangle = document.getElementById('generation-area').getBoundingClientRect();
+
+    if (rectangleRectangle.bottom > platformAreaRectangle.bottom) rectangle.style.top = `${platformAreaRectangle.bottom - rectangleRectangle.height}px`;
+    if (rectangleRectangle.right > platformAreaRectangle.right) rectangle.style.left = `${platformAreaRectangle.right - rectangleRectangle.width}px`;
+
+    if (rectangleRectangle.bottom < platformAreaRectangle.top) {
+        if (rectangleRectangle.top < generationAreaRectangle.top) rectangle.style.top = `${generationAreaRectangle.top}px`;
+        if (rectangleRectangle.left < generationAreaRectangle.left) rectangle.style.left = `${generationAreaRectangle.left}px`;
+    } else {
+        isInsidePlatformArea = true;
+        if (rectangleRectangle.top < platformAreaRectangle.top) rectangle.style.top = `${platformAreaRectangle.top}px`;
+        if (rectangleRectangle.left < platformAreaRectangle.left) rectangle.style.left = `${platformAreaRectangle.left}px`;
+    }
+
+    return isInsidePlatformArea;
+
+}
+
 function drag(event) {
 
     if (draggedElement === null) return;
     event.preventDefault();
 
-    const draggedElementY = draggedElement.offsetTop + (event.clientY - dragStartY);
     const draggedElementX = draggedElement.offsetLeft + (event.clientX - dragStartX);
+    const draggedElementY = draggedElement.offsetTop + (event.clientY - dragStartY);
 
     draggedElement.style.top = `${draggedElementY}px`;
     draggedElement.style.left = `${draggedElementX}px`;
     dragStartX = event.clientX;
     dragStartY = event.clientY;
+
+    const isInsidePlatformArea = checkAreaContainment(draggedElement);
 
 };
 
