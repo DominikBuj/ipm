@@ -41,7 +41,6 @@ listElements.forEach(listElement => {
 
 function generateRectangle() {
 
-    console.log('worked');
     const generationAreaRectangle = document.getElementById('generation-area').getBoundingClientRect();
 
     const rectangle = document.createElement('div');
@@ -53,3 +52,37 @@ function generateRectangle() {
     document.getElementById('platform-area').appendChild(rectangle);
 
 }
+
+let dragStartX = 0;
+let dragStartY = 0;
+
+function dragStart(event) {
+    const clickedElement = event.target;
+    if (clickedElement.classList.contains('rectangle') !== true) return;
+    draggedElement = clickedElement;
+    dragStartX = event.clientX;
+    dragStartY = event.clientY;
+};
+
+function drag(event) {
+
+    if (draggedElement === null) return;
+    event.preventDefault();
+
+    const draggedElementY = draggedElement.offsetTop + (event.clientY - dragStartY);
+    const draggedElementX = draggedElement.offsetLeft + (event.clientX - dragStartX);
+
+    draggedElement.style.top = `${draggedElementY}px`;
+    draggedElement.style.left = `${draggedElementX}px`;
+    dragStartX = event.clientX;
+    dragStartY = event.clientY;
+
+};
+
+function dragEnd(event) {
+    draggedElement = null;
+};
+
+document.addEventListener('mousedown', dragStart);
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', dragEnd);

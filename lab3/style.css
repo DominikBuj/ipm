@@ -78,3 +78,7 @@ li {
     border: 8px solid;
     border-radius: 4px;
 }
+
+.rectangle:hover {
+    border-style: dotted;
+}
