@@ -28,7 +28,6 @@ listElements.forEach(listElement => {
 
     listElement.addEventListener('dragover', (event) => {
         event.preventDefault();
-        event.stopPropagation();
         const elementAfterDraggedElement = getElemenetAfterDraggedElement(event.clientY);
         if (elementAfterDraggedElement !== null) document.getElementById('list').insertBefore(draggedElement, elementAfterDraggedElement);
     });
