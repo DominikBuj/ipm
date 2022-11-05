@@ -1,0 +1,17 @@
+
+body {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.list-container {
+    background-color: lightcoral;
+}
+
+.game-container {
+    background-color: lightcyan;
+}
