@@ -10,6 +10,17 @@ body {
 
 .list-container {
     background-color: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ol {
+    /* border: 4px solid rgb(44, 44, 44); */
+}
+
+li {
+    /* border-bottom: 4px solid rgb(44, 44, 44); */
 }
 
 .game-container {
