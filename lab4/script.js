@@ -39,7 +39,12 @@ open.onsuccess = function() {
     // };
 }
 
+function loadData() {
+    
+}
+
 function saveData() {
+
     let data = {}
     for (let fieldName of fieldNames) {
         data[fieldName] = document.getElementById(fieldName).value;
@@ -50,12 +55,6 @@ function saveData() {
     var store = tx.objectStore("MyObjectStore");
 
     store.put({id: 1, data: data});
-
-    let getData = store.get(1);
-
-    getData.onsuccess = function() {
-        console.log(getData.result.data);
-    };
 
 }
 
