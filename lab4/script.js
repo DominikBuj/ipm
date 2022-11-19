@@ -16,11 +16,14 @@ open.onsuccess = function() {
     var db = open.result;
     var tx = db.transaction("MyObjectStore", "readwrite");
     var store = tx.objectStore("MyObjectStore");
-    var index = store.index("NameIndex");
 
-    const getAllKeys = index.getAllKeys();
-    getAllKeys.onsuccess = () => {
-        console.log(getAllKeys.result);
+    const getAll = store.getAll();
+    getAll.onsuccess = () => {
+        let ids = ''
+        for (let id of getAll.result) {
+            ids += id['id'] + ' ';
+        }
+        alert('All possible IDs: ' + ids);
     };
 
 }
