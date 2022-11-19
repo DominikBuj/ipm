@@ -35,14 +35,14 @@ function showPossibleIds() {
             for (let id of ids) {
                 possibleIds.innerHTML += `
                     <div class="flex-container-column simple-container">
-                        <span style="text-align: center;">${id}</span>
+                        <span style="text-align: center; font-weight: bold; font-style: italic;">${id}</span>
                     </div>
                 `
             }
         } else {
             possibleIds.innerHTML = `
                 <div class="flex-container-column simple-container">
-                    <span style="text-align: center;">No possible IDs</span>
+                    <span style="text-align: center; font-weight: bold; font-style: italic;">No possible IDs</span>
                 </div>
             `
         };
@@ -58,6 +58,11 @@ function loadData() {
     var store = tx.objectStore("MyObjectStore");
 
     const id = document.getElementById('person-id').value;
+    if (!id) {
+        alert('Input your ID!');
+        return;
+    }
+
     let getData = store.get(id);
 
     getData.onsuccess = function() {
