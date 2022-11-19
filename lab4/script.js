@@ -8,7 +8,22 @@ const fieldNames = ['email', 'area-code', 'nip', 'id', 'ipv4', 'website', 'windo
 open.onupgradeneeded = function() {
     let db = open.result;
     let store = db.createObjectStore("MyObjectStore", {keyPath: "id"});
+    var index = store.createIndex("NameIndex");
 };
+
+open.onsuccess = function() {
+
+    var db = open.result;
+    var tx = db.transaction("MyObjectStore", "readwrite");
+    var store = tx.objectStore("MyObjectStore");
+    var index = store.index("NameIndex");
+
+    const getAllKeys = index.getAllKeys();
+    getAllKeys.onsuccess = () => {
+        console.log(getAllKeys.result);
+    };
+
+}
 
 function loadData() {
 
