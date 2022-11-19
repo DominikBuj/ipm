@@ -3,10 +3,11 @@ let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedD
 
 let open = indexedDB.open('MyDatabase', 1);
 
+const fieldNames = ['email', 'area-code', 'nip', 'id', 'ipv4', 'website', 'windows-path-small', 'windows-path', 'file-path', 'ipv6', 'phone-number', 'date', 'date-limited', 'time-24', 'time-12', 'color'];
+
 open.onupgradeneeded = function() {
     let db = open.result;
     let store = db.createObjectStore("MyObjectStore", {keyPath: "id"});
-    let index = store.createIndex("NameIndex", ["name.last", "name.first"]);
 };
 
 open.onsuccess = function() {
@@ -32,14 +33,30 @@ open.onsuccess = function() {
         console.log(getBob.result.name.first);   // => "Bob"
     };
 
-    // Close the db when the transaction is done
-    tx.oncomplete = function() {
-        db.close();
-    };
+    // // Close the db when the transaction is done
+    // tx.oncomplete = function() {
+    //     db.close();
+    // };
 }
 
 function saveData() {
-    
+    let data = {}
+    for (let fieldName of fieldNames) {
+        data[fieldName] = document.getElementById(fieldName).value;
+    }
+
+    var db = open.result;
+    var tx = db.transaction("MyObjectStore", "readwrite");
+    var store = tx.objectStore("MyObjectStore");
+
+    store.put({id: 1, data: data});
+
+    let getData = store.get(1);
+
+    getData.onsuccess = function() {
+        console.log(getData.result.data);
+    };
+
 }
 
 const today = new Date();
