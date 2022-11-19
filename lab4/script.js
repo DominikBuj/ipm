@@ -5,13 +5,20 @@ let open = indexedDB.open('MyDatabase', 1);
 
 const fieldNames = ['email', 'area-code', 'nip', 'id', 'ipv4', 'website', 'windows-path-small', 'windows-path', 'file-path', 'ipv6', 'phone-number', 'date', 'date-limited', 'time-24', 'time-12', 'color'];
 
+const possibleIds = document.getElementById('possible-ids');
+
 open.onupgradeneeded = function() {
     let db = open.result;
     let store = db.createObjectStore("MyObjectStore", {keyPath: "id"});
-    var index = store.createIndex("NameIndex");
 };
 
 open.onsuccess = function() {
+    showPossibleIds();
+}
+
+function showPossibleIds() {
+
+    possibleIds.innerHTML = null;
 
     var db = open.result;
     var tx = db.transaction("MyObjectStore", "readwrite");
@@ -19,11 +26,27 @@ open.onsuccess = function() {
 
     const getAll = store.getAll();
     getAll.onsuccess = () => {
-        let ids = ''
+        let ids = [];
         for (let id of getAll.result) {
-            ids += id['id'] + ' ';
+            ids += id['id'];
         }
-        alert('All possible IDs: ' + ids);
+
+        if (ids.length > 0) {
+            for (let id of ids) {
+                possibleIds.innerHTML += `
+                    <div class="flex-container-column simple-container">
+                        <span style="text-align: center;">${id}</span>
+                    </div>
+                `
+            }
+        } else {
+            possibleIds.innerHTML = `
+                <div class="flex-container-column simple-container">
+                    <span style="text-align: center;">No possible IDs</span>
+                </div>
+            `
+        };
+
     };
 
 }
@@ -40,6 +63,7 @@ function loadData() {
     getData.onsuccess = function() {
         if (!getData.result) {
             alert('Failed to find data for this ID!');
+            return;
         }
         for (let fieldName of fieldNames) {
             document.getElementById(fieldName).value = getData.result.data[fieldName];
@@ -66,6 +90,8 @@ function saveData() {
     }
 
     store.put({id: id, data: data});
+
+    showPossibleIds();
 
 }
 
