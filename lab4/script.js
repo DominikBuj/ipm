@@ -16,9 +16,13 @@ function loadData() {
     var tx = db.transaction("MyObjectStore", "readwrite");
     var store = tx.objectStore("MyObjectStore");
 
-    let getData = store.get(1);
+    const id = document.getElementById('person-id').value;
+    let getData = store.get(id);
 
     getData.onsuccess = function() {
+        if (!getData.result) {
+            alert('Failed to find data for this ID!');
+        }
         for (let fieldName of fieldNames) {
             document.getElementById(fieldName).value = getData.result.data[fieldName];
         }
@@ -37,7 +41,13 @@ function saveData() {
     var tx = db.transaction("MyObjectStore", "readwrite");
     var store = tx.objectStore("MyObjectStore");
 
-    store.put({id: 1, data: data});
+    const id = document.getElementById('person-id').value;
+    if (!id) {
+        alert('Input your ID!');
+        return;
+    }
+
+    store.put({id: id, data: data});
 
 }
 
