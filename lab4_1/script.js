@@ -121,9 +121,9 @@ const randomValuesArray = [
     ['AAA111111', 'BBB123123', 'CCC123321', 'FAV235972'],
     ['181.180.154.206', '216.39.25.244', '193.39.146.8', '72.240.191.148'],
     ['https://www.youtube.com/', 'https://www.filmweb.pl/', 'https://www.chess.com/', 'https://www.netflix.com/browse'],
-    ['D:\\winnt\\test', 'd:\\msdos'],
-    ['D:\\wiNnt\\test', 'd:\\msdOS'],
-    ['/etc/aaaa', '/etc/bBbbb'],
+    ['D:\\winnt\\test', 'd:\\msdos', 'C:\\win', 'C:\\dos\\folder'],
+    ['D:\\wiNnt\\test', 'd:\\msdOS', 'c:\\WiN', 'C:\\DoS\\FOLDER'],
+    ['/etc/aaaa', '/etc/bBbbb', '/etc/file1', '/etc/file2'],
     ['da88:d5fa:d823:efe5:1d30:c853:d297:578b', 'c78f:ffb7:e9f4:d28f:ee4b:adce:9122:8402', 'd0ce:b890:6e96:538b:6f05:3338:5533:7e0f', 'cb2c:5b1d:75c2:9c61:98be:b18e:75f0:2823'],
     ['+1 202-918-2132', '+376 690 065 611', '323-269-6253', '951-572-0065'],
     ['2022-01-01', '2000-12-24', '1990-01-01', '1998-02-21'],
@@ -146,9 +146,9 @@ function randomizeInputs() {
     document.getElementById('id').value = randomValuesArray[3][getRandomInt(0, 3)];
     document.getElementById('ipv4').value = randomValuesArray[4][getRandomInt(0, 3)];
     document.getElementById('website').value = randomValuesArray[5][getRandomInt(0, 3)];
-    document.getElementById('windows-path-small').value = randomValuesArray[6][getRandomInt(0, 1)];
-    document.getElementById('windows-path').value = randomValuesArray[7][getRandomInt(0, 1)];
-    document.getElementById('file-path').value = randomValuesArray[8][getRandomInt(0, 1)];
+    document.getElementById('windows-path-small').value = randomValuesArray[6][getRandomInt(0, 3)];
+    document.getElementById('windows-path').value = randomValuesArray[7][getRandomInt(0, 3)];
+    document.getElementById('file-path').value = randomValuesArray[8][getRandomInt(0, 3)];
     document.getElementById('ipv6').value = randomValuesArray[9][getRandomInt(0, 3)];
     document.getElementById('phone-number').value = randomValuesArray[10][getRandomInt(0, 3)];
     document.getElementById('date').value = randomValuesArray[11][getRandomInt(0, 3)];
