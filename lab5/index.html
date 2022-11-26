@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> 
+    <title>IPM - FORM</title>
+</head>
+<body>
+
+    <div class="flex-container-column form-container">
+
+        <div class="flex-container-column form-container-row">
+
+            <div class="flex-container-column form-cell">
+                <h3 id="possible-ids-header">No possible IDs</h3>
+            </div>
+
+            <div id="possible-ids"></div>
+
+            <div class="flex-container-column form-cell form-input">
+                <label for="person-id">ID</label>
+                <input id="person-id" type="text" placeholder="Type your ID here" required>
+            </div>
+
+            <button onclick="loadData();">Wczytaj dane</button>
+            <button onclick="saveData();">Zapisz dane</button>
+
+        </div>
+
+        <div id="inputs-container" class="flex-container-column form-container-row">
+
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="249073@edu.p.lodz.pl" required>
+            </div>
+
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="area-code">Kod pocztowy</label>
+                <input id="area-code" pattern="\d{2}-?\d{3}" placeholder="12-345" maxlength="6" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="nip">NIP</label>
+                <input id="nip" pattern="[A-Z]{2}\d{10}" placeholder="PL1234567890" maxlength="12" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="id">Numer dowodu</label>
+                <input id="id" pattern="[A-Z]{3}\d{6}" placeholder="ABC123456" maxlength="9" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="ipv4">IPv4</label>
+                <input id="ipv4" pattern="(((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))[.]){3}((\d)|([1-9]\d)|([1]\d\d)|([2][0-4]\d)|([2][5][0-5]))"
+                placeholder="255.255.255.255" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="website">Strona www</label>
+                <input id="website" type="string" oninput="validateWebsite()" placeholder="https://www.google.com/" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="windows-path-small">Scieżka dysku (małe litery)</label>
+                <input id="windows-path-small" pattern="[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*"
+                placeholder="C:\windows\system" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="windows-path">Scieżka dysku (małe i duże litery)</label>
+                <input id="windows-path" oninput="validateWindowsPath()" placeholder="C:\WindowS\system" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="file-path">Scieżka pliku w folderze etc</label>
+                <input id="file-path" pattern="/etc/(\w)+" placeholder="/etc/text" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="ipv6">IPv6</label>
+                <input id="ipv6" pattern="(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
+                placeholder="785c:e0fb:ab25:8f58:918f:d22a:b734:b99c" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="phone-number">Numer telefonu</label>
+                <input id="phone-number" type="tel" placeholder="123456789" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="date">Data</label>
+                <input id="date" type="date" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="date-limited">Data (dni pracujące)</label>
+                <input id="date-limited" type="date" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="time-24">Godzina (24godz)</label>
+                <input id="time-24" type="text" pattern="(2[0-3]|[01]?[0-9]):[0-5][0-9]" placeholder="23:10" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="time-12">Godzina (12godz)</label>
+                <input id="time-12" type="text" pattern="(1[0-2]|[1-9]):[0-5][0-9] ([aA]|[pP])[mM]" placeholder="11:10 PM" required>
+            </div>
+    
+            <div class="flex-container-column form-cell form-input draggable" draggable="true">
+                <label for="color">Kolor</label>
+                <input id="color" type="color" style="width: 100%;" required>
+            </div>
+
+        </div>
+
+        <div class="flex-container-column form-container-row">
+
+            <button onclick="randomizeInputs();">Zalosuj dane</button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
