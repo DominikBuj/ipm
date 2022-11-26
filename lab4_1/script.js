@@ -38,7 +38,7 @@ function showPossibleIds() {
             possibleIdsHeader.textContent = 'Lista Klientów';
             for (let id of ids) {
                 possibleIds.innerHTML += `
-                    <div class="flex-container-row form-cell">
+                    <div class="flex-container-row form-cell" style="padding: 8px">
                         <span style="flex: 1 1 auto;">${id}</span>
                         <button style="margin: 0;" onclick="loadClientData(${id});">Wczytaj dane klienta</button>
                     </div>
