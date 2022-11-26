@@ -56,51 +56,20 @@ function loadClientData(id) {
     let transaction = database.transaction("MyObjectStore", "readwrite");
     let store = transaction.objectStore("MyObjectStore");
 
-    // if (!id) {
-    //     alert('Niepoprawny klient!');
-    //     return;
-    // }
-
-    let getData = store.get(id);
+    let getData = store.get(String(id));
 
     getData.onsuccess = function() {
-        // if (!getData.result) {
-        //     alert('Failed to find data for this ID!');
-        //     return;
-        // }
+        if (!getData.result) {
+            alert('Nie udało się wczytać klienta!');
+            return;
+        }
+        document.getElementById('person-id').value = String(id);
         for (let fieldName of fieldNames) {
-            console.log(getData);
             document.getElementById(fieldName).value = getData.result.data[fieldName];
         }
     };
 
 }
-
-// function loadData() {
-
-//     let database = open.result;
-//     let transaction = database.transaction("MyObjectStore", "readwrite");
-//     let store = transaction.objectStore("MyObjectStore");
-
-//     const id = document.getElementById('person-id').value;
-//     if (!id) {
-//         alert('Input your ID!');
-//         return;
-//     }
-
-//     let getData = store.get(id);
-
-//     getData.onsuccess = function() {
-//         if (!getData.result) {
-//             alert('Failed to find data for this ID!');
-//             return;
-//         }
-//         for (let fieldName of fieldNames) {
-//             document.getElementById(fieldName).value = getData.result.data[fieldName];
-//         }
-//     };
-
-// }
 
 function saveClientData() {
 
@@ -115,7 +84,7 @@ function saveClientData() {
 
     const id = document.getElementById('person-id').value;
     if (!id) {
-        alert('Input your ID!');
+        alert('Wpisz nazwę klienta!');
         return;
     }
 
