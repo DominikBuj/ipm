@@ -40,7 +40,8 @@ function showPossibleIds() {
                 possibleIds.innerHTML += `
                     <div class="flex-container-row form-cell" style="padding: 8px">
                         <span style="flex: 1 1 auto;">${id}</span>
-                        <button style="margin: 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
+                        <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
+                        <button style="width: 196px; margin: 0;" onclick="deleteClientData('${id}');">Usuń dane klienta</button>
                     </div>
                 `
             }
@@ -67,6 +68,22 @@ function loadClientData(id) {
         for (let fieldName of fieldNames) {
             document.getElementById(fieldName).value = getData.result.data[fieldName];
         }
+    };
+
+}
+
+function deleteClientData(id) {
+
+    let database = open.result;
+    let transaction = database.transaction("MyObjectStore", "readwrite");
+    let store = transaction.objectStore("MyObjectStore");
+
+    let deleteData = store.delete(id);
+
+    showPossibleIds();
+
+    deleteData.onsuccess = function() {
+        alert(`Usunięto klienta ${id}!`);
     };
 
 }
