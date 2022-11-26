@@ -3,6 +3,11 @@
     flex-direction: column;
 }
 
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+}
+
 body {
     margin: 0;
     display: flex;
