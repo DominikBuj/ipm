@@ -37,13 +37,84 @@ function showPossibleIds() {
         if (ids.length > 0) {
             possibleIdsHeader.textContent = 'Lista Klientów';
             for (let id of ids) {
-                possibleIds.innerHTML += `
-                    <div class="flex-container-row form-cell" style="padding: 8px">
-                        <span style="flex: 1 1 auto;">${id}</span>
-                        <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
-                        <button style="width: 196px; margin: 0;" onclick="deleteClientData('${id}');">Usuń dane klienta</button>
-                    </div>
-                `
+
+                let clientDataHTML = ``;
+                let getData = store.get(id);
+
+                getData.onsuccess = function() {
+
+                    for (let fieldName of fieldNames) {
+                        let fieldLabel = '';
+                        switch (fieldName) {
+                            case 'email':
+                                fieldLabel = 'Email';
+                                break;
+                            case 'area-code':
+                                fieldLabel = 'Kod pocztowy';
+                                break;
+                            case 'nip':
+                                fieldLabel = 'NIP';
+                                break;
+                            case 'id':
+                                fieldLabel = 'Numer Dowodu';
+                                break;
+                            case 'ipv4':
+                                fieldLabel = 'IPv4';
+                                break;
+                            case 'website':
+                                fieldLabel = 'Strona www';
+                                break;
+                            case 'windows-path-small':
+                                fieldLabel = 'Scieżka dysku (małe litery)';
+                                break;
+                            case 'windows-path':
+                                fieldLabel = 'Scieżka dysku (małe i duże litery)';
+                                break;
+                            case 'file-path':
+                                fieldLabel = 'Scieżka pliku w folderze etc';
+                                break;
+                            case 'ipv6':
+                                fieldLabel = 'IPv6';
+                                break;
+                            case 'phone-number':
+                                fieldLabel = 'Numer telefonu';
+                                break;
+                            case 'date':
+                                fieldLabel = 'Data';
+                                break;
+                            case 'date-limited':
+                                fieldLabel = 'Data (dni pracujące)';
+                                break;
+                            case 'time-24':
+                                fieldLabel = 'Godzina (24godz)';
+                                break;
+                            case 'time-12':
+                                fieldLabel = 'Godzina (12godz)';
+                                break;
+                            case 'color':
+                                fieldLabel = 'Kolor';
+                                break;
+                        }
+                        clientDataHTML += `
+                            <span style="font-weight: 16px; line-height: 24px;">${fieldLabel}:
+                                <span style="font-weight: 16px; line-height: 24px; font-weight: normal;"> ${getData.result.data[fieldName]}</span>
+                            </span>
+                        `;
+                    }
+
+                    possibleIds.innerHTML += `
+                        <div class="flex-container-column form-cell">
+                            <div class="flex-container-row" style="padding: 8px; border-bottom: 3px solid rgb(44, 44, 44);">
+                                <span style="flex: 1 1 auto;">${id}</span>
+                                <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
+                                <button style="width: 196px; margin: 0;" onclick="deleteClientData('${id}');">Usuń dane klienta</button>
+                            </div>
+                            ${clientDataHTML}
+                        </div>
+                    `
+
+                };
+
             }
         };
 
