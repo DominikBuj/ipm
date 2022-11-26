@@ -31,7 +31,7 @@ function showPossibleIds() {
         
         let ids = [];
         for (let id of getIds.result) {
-            ids += id['id'];
+            ids.push(id['id']);
         }
 
         if (ids.length > 0) {
@@ -40,7 +40,7 @@ function showPossibleIds() {
                 possibleIds.innerHTML += `
                     <div class="flex-container-row form-cell" style="padding: 8px">
                         <span style="flex: 1 1 auto;">${id}</span>
-                        <button style="margin: 0;" onclick="loadClientData(${id});">Wczytaj dane klienta</button>
+                        <button style="margin: 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
                     </div>
                 `
             }
@@ -56,14 +56,14 @@ function loadClientData(id) {
     let transaction = database.transaction("MyObjectStore", "readwrite");
     let store = transaction.objectStore("MyObjectStore");
 
-    let getData = store.get(String(id));
+    let getData = store.get(id);
 
     getData.onsuccess = function() {
         if (!getData.result) {
             alert('Nie udało się wczytać klienta!');
             return;
         }
-        document.getElementById('person-id').value = String(id);
+        document.getElementById('person-id').value = id;
         for (let fieldName of fieldNames) {
             document.getElementById(fieldName).value = getData.result.data[fieldName];
         }
@@ -83,6 +83,7 @@ function saveClientData() {
     let store = transaction.objectStore("MyObjectStore");
 
     const id = document.getElementById('person-id').value;
+    console.log(id);
     if (!id) {
         alert('Wpisz nazwę klienta!');
         return;
