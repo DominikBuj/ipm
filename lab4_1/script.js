@@ -51,36 +51,58 @@ function showPossibleIds() {
 }
 
 function loadClientData(id) {
-    console.log(id);
-}
-
-function loadData() {
-
+    
     let database = open.result;
     let transaction = database.transaction("MyObjectStore", "readwrite");
     let store = transaction.objectStore("MyObjectStore");
 
-    const id = document.getElementById('person-id').value;
-    if (!id) {
-        alert('Input your ID!');
-        return;
-    }
+    // if (!id) {
+    //     alert('Niepoprawny klient!');
+    //     return;
+    // }
 
     let getData = store.get(id);
 
     getData.onsuccess = function() {
-        if (!getData.result) {
-            alert('Failed to find data for this ID!');
-            return;
-        }
+        // if (!getData.result) {
+        //     alert('Failed to find data for this ID!');
+        //     return;
+        // }
         for (let fieldName of fieldNames) {
+            console.log(getData);
             document.getElementById(fieldName).value = getData.result.data[fieldName];
         }
     };
 
 }
 
-function saveData() {
+// function loadData() {
+
+//     let database = open.result;
+//     let transaction = database.transaction("MyObjectStore", "readwrite");
+//     let store = transaction.objectStore("MyObjectStore");
+
+//     const id = document.getElementById('person-id').value;
+//     if (!id) {
+//         alert('Input your ID!');
+//         return;
+//     }
+
+//     let getData = store.get(id);
+
+//     getData.onsuccess = function() {
+//         if (!getData.result) {
+//             alert('Failed to find data for this ID!');
+//             return;
+//         }
+//         for (let fieldName of fieldNames) {
+//             document.getElementById(fieldName).value = getData.result.data[fieldName];
+//         }
+//     };
+
+// }
+
+function saveClientData() {
 
     let data = {}
     for (let fieldName of fieldNames) {
