@@ -19,7 +19,7 @@ open.onsuccess = function() {
 
 function showPossibleIds() {
 
-    possibleIdsHeader.textContent = 'No possible IDs';
+    possibleIdsHeader.textContent = 'Brak Klientów';
     possibleIds.innerHTML = null;
 
     let database = open.result;
@@ -35,11 +35,12 @@ function showPossibleIds() {
         }
 
         if (ids.length > 0) {
-            possibleIdsHeader.textContent = 'Possible IDs';
+            possibleIdsHeader.textContent = 'Lista Klientów';
             for (let id of ids) {
                 possibleIds.innerHTML += `
-                    <div class="flex-container-column form-cell">
-                        <span>${id}</span>
+                    <div class="flex-container-row form-cell">
+                        <span style="flex: 1 1 auto;">${id}</span>
+                        <button style="margin: 0;" onclick="loadClientData(${id});">Wczytaj dane klienta</button>
                     </div>
                 `
             }
@@ -47,6 +48,10 @@ function showPossibleIds() {
 
     };
 
+}
+
+function loadClientData(id) {
+    console.log(id);
 }
 
 function loadData() {
