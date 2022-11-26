@@ -102,21 +102,21 @@ document.getElementById('date-limited').min = currentWeekMonday.toLocaleDateStri
 document.getElementById('date-limited').max = currentWeekFriday.toLocaleDateString('en-ca');
 
 const randomValuesArray = [
-    ['safinatka@jamtogel.org', 'pashocek@email-temp.com'],
-    ['11-111', '22-222'],
-    ['AA1111111111', 'AB1231231231'],
-    ['AAA111111', 'BBB123123'],
-    ['181.180.154.206', '216.39.25.244'],
-    ['https://www.youtube.com/', 'https://www.filmweb.pl/'],
+    ['safinatka@jamtogel.org', 'pashocek@email-temp.com', 'Thle1980@einrot.com', 'IrmgardSBailey@armyspy.com'],
+    ['11-111', '22-222', '33-333', '12-345'],
+    ['AA1111111111', 'AB1231231231', 'PL1253231331', 'PL1254567221'],
+    ['AAA111111', 'BBB123123', 'CCC123321', 'FAV235972'],
+    ['181.180.154.206', '216.39.25.244', '193.39.146.8', '72.240.191.148'],
+    ['https://www.youtube.com/', 'https://www.filmweb.pl/', 'https://www.chess.com/', 'https://www.netflix.com/browse'],
     ['D:\\winnt\\test', 'd:\\msdos'],
     ['D:\\wiNnt\\test', 'd:\\msdOS'],
     ['/etc/aaaa', '/etc/bBbbb'],
-    ['da88:d5fa:d823:efe5:1d30:c853:d297:578b', 'c78f:ffb7:e9f4:d28f:ee4b:adce:9122:8402'],
-    ['+1 202-918-2132', '+376 690 065 611'],
-    ['2022-01-01', '2000-12-24'],
-    ['21:21', '11:11'],
-    ['10:10 AM', '11:21 PM'],
-    ['#e66465', '#f6b73c']
+    ['da88:d5fa:d823:efe5:1d30:c853:d297:578b', 'c78f:ffb7:e9f4:d28f:ee4b:adce:9122:8402', 'd0ce:b890:6e96:538b:6f05:3338:5533:7e0f', 'cb2c:5b1d:75c2:9c61:98be:b18e:75f0:2823'],
+    ['+1 202-918-2132', '+376 690 065 611', '323-269-6253', '951-572-0065'],
+    ['2022-01-01', '2000-12-24', '1990-01-01', '1998-02-21'],
+    ['21:21', '11:11', '12:00', '14:56'],
+    ['10:10 AM', '11:21 PM', '8:00 AM', '9:30 PM'],
+    ['#e66465', '#f6b73c', '#b1faa3', '#babee3']
 ]
 
 function getRandomInt(min, max) {
