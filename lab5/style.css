@@ -1,0 +1,98 @@
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: #F0FFFF;
+    font-family: 'Roboto', sans-serif;
+}
+
+h3, span {
+    margin: 0;
+    line-height: 48px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+input {
+    height: 36px;
+    padding: 4px;
+    font-size: 16px;
+}
+
+input:valid {
+    border: green solid 2px;
+    border-radius: 4px;
+}
+
+input:invalid {
+    border: red solid 2px;
+    border-radius: 4px;
+}
+
+button {
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 48px;
+    border: 1px solid rgb(44, 44, 44);
+    border-radius: 4px;
+    background: rgb(44, 44, 44);
+    color: white;
+    cursor: pointer;
+}
+
+.form-container {
+    margin: 32px 64px;
+    width: 768px;
+    border: 4px solid rgb(44, 44, 44);
+    border-radius: 4px;
+    background: #A7C7E7;
+}
+
+.form-container-row {
+    padding: 16px 16px 0 16px;
+}
+
+.form-container .form-container-row:not(:last-child) {
+    border-bottom: 4px solid rgb(44, 44, 44);
+}
+
+.form-cell {
+    margin-bottom: 16px;
+    border: 3px solid rgb(44, 44, 44);
+    border-radius: 4px;
+    background: white;
+}
+
+.form-input {
+    padding: 6px 8px;
+}
+
+.draggable {
+    cursor: grab;
+}
+
+.draggable label {
+    cursor: grab;
+}
+
+.draggable:hover:not(:active) {
+    border-style: dashed;
+}
