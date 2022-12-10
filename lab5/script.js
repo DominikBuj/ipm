@@ -26,7 +26,19 @@ function showPossibleIds() {
     let transaction = database.transaction("MyObjectStore", "readwrite");
     let store = transaction.objectStore("MyObjectStore");
 
-    const getIds = store.getAll();
+    // const getIds = store.getAll();
+    // getIds.onsuccess = () => {
+    //     let ids = [];
+    //     for (let id of getIds.result) {
+    //         const getData = store.get(id);
+    //         getData.onsuccess = () => {
+    //             for (let fieldName of fieldNames) {
+
+    //             }
+    //         }
+    //     }
+    // }
+
     getIds.onsuccess = () => {
         
         let ids = [];
