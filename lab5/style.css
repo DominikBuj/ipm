@@ -96,3 +96,8 @@ button {
 .draggable:hover:not(:active) {
     border-style: dashed;
 }
+
+#filter-id:valid {
+    border: rgb(44, 44, 44) solid 2px;
+    border-radius: 4px;
+}
