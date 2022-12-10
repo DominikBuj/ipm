@@ -19,7 +19,9 @@ open.onsuccess = function() {
 
 function showPossibleIds() {
 
-    possibleIdsHeader.textContent = 'Brak Klientów';
+    const filter = document.getElementById('filter-id').value;
+
+    possibleIdsHeader.textContent = filter.length <= 0 ? 'Brak Klientów' : 'Brak Wyszukiwanych Klientów';
     possibleIds.innerHTML = null;
 
     let database = open.result;
@@ -31,22 +33,24 @@ function showPossibleIds() {
     const getIds = store.getAll();
     getIds.onsuccess = () => {
         for (let id of getIds.result) {
-            const filter = document.getElementById('filter-id').value;
             if (filter.length <= 0) {
                 ids.push(id.id);
-                break;
+                continue;
+            } else {
+                let correct = false;
+                for (let fieldName of fieldNames) {
+                    if (id.data[fieldName].includes(filter)) {
+                        correct = true;
+                        break;
+                    }
+                }
+                if (correct) ids.push(id.id);
             };
-            // console.log(id.id);
-            // const getData = store.get(id);
-            // getData.onsuccess = () => {
-            //     for (let fieldName of fieldNames) {
-
-            //     }
-            // }
         }
     };
 
-    console.log(ids);
+    // if (ids.length <)
+
     // getIds.onsuccess = () => {
         
     //     let ids = [];
@@ -138,7 +142,7 @@ function showPossibleIds() {
     //         }
     //     };
 
-    //};
+    // };
 
 }
 
