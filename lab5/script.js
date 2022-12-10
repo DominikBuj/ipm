@@ -304,3 +304,26 @@ document.querySelectorAll('.form-input.draggable').forEach(inputElement => {
     });
 
 });
+
+function generateRandomClient() {
+
+    // let data = {}
+    // for (let fieldName of fieldNames) {
+    //     data[fieldName] = document.getElementById(fieldName).value;
+    // }
+
+    // let database = open.result;
+    // let transaction = database.transaction("MyObjectStore", "readwrite");
+    // let store = transaction.objectStore("MyObjectStore");
+
+    // const id = document.getElementById('person-id').value;
+    // if (!id) {
+    //     alert('Wpisz nazwę klienta!');
+    //     return;
+    // }
+
+    // store.put({id: id, data: data});
+
+    // showPossibleIds();
+
+}
