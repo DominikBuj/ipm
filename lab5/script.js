@@ -222,6 +222,19 @@ const randomValuesArray = [
     ['#e66465', '#f6b73c', '#b1faa3', '#babee3']
 ]
 
+const randomClientNames = [
+    'Dawid',
+    'Igor',
+    'Daniel',
+    'Ignacy',
+    'Błażej',
+    'Stanisława',
+    'Marysia',
+    'Zuzanna',
+    'Matylda',
+    'Sylwia'
+];
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -306,6 +319,17 @@ document.querySelectorAll('.form-input.draggable').forEach(inputElement => {
 });
 
 function generateRandomClient() {
+    
+    // const getIds = store.getAll();
+    // getIds.onsuccess = () => {
+    //     let ids = [];
+    //     for (let id of getIds.result) {
+    //         ids.push(id.id);
+    //     }
+    // };
+
+    let randomName = randomClientNames[getRandomInt(0, 9)];
+    console.log(randomName);
 
     // let data = {}
     // for (let fieldName of fieldNames) {
