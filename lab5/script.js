@@ -355,7 +355,7 @@ function generateRandomClient() {
             'color': randomValuesArray[14][getRandomInt(0, 3)]
         };
         
-        // store.put({id: randomId, data: randomData});
+        store.put({id: randomId, data: randomData});
 
         showPossibleIds();
 
