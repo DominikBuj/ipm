@@ -320,34 +320,45 @@ document.querySelectorAll('.form-input.draggable').forEach(inputElement => {
 
 function generateRandomClient() {
     
-    // const getIds = store.getAll();
-    // getIds.onsuccess = () => {
-    //     let ids = [];
-    //     for (let id of getIds.result) {
-    //         ids.push(id.id);
-    //     }
-    // };
+    let database = open.result;
+    let transaction = database.transaction("MyObjectStore", "readwrite");
+    let store = transaction.objectStore("MyObjectStore");
 
-    let randomName = randomClientNames[getRandomInt(0, 9)];
-    console.log(randomName);
+    const getIds = store.getAll();
+    getIds.onsuccess = () => {
 
-    // let data = {}
-    // for (let fieldName of fieldNames) {
-    //     data[fieldName] = document.getElementById(fieldName).value;
-    // }
+        let ids = [];
+        for (let id of getIds.result) {
+            ids.push(id.id);
+        }
 
-    // let database = open.result;
-    // let transaction = database.transaction("MyObjectStore", "readwrite");
-    // let store = transaction.objectStore("MyObjectStore");
+        const possibleIds = [...randomClientNames].filter(id => !ids.includes(id));
+        if (possibleIds.length <= 0) return;
+        const randomId = possibleIds[getRandomInt(0, possibleIds.length - 1)];
 
-    // const id = document.getElementById('person-id').value;
-    // if (!id) {
-    //     alert('Wpisz nazwę klienta!');
-    //     return;
-    // }
+        const randomData = {
+            'email': randomValuesArray[0][getRandomInt(0, 3)],
+            'area-code': randomValuesArray[1][getRandomInt(0, 3)],
+            'nip': randomValuesArray[2][getRandomInt(0, 3)],
+            'id': randomValuesArray[3][getRandomInt(0, 3)],
+            'ipv4': randomValuesArray[4][getRandomInt(0, 3)],
+            'website': randomValuesArray[5][getRandomInt(0, 3)],
+            'windows-path-small': randomValuesArray[6][getRandomInt(0, 3)],
+            'windows-path': randomValuesArray[7][getRandomInt(0, 3)],
+            'file-path': randomValuesArray[8][getRandomInt(0, 3)],
+            'ipv6': randomValuesArray[9][getRandomInt(0, 3)],
+            'phone-number': randomValuesArray[10][getRandomInt(0, 3)],
+            'date': randomValuesArray[11][getRandomInt(0, 3)],
+            'date-limited': new Date(new Date().setDate(currentWeekMonday.getDate() + getRandomInt(0, 4))).toLocaleDateString('en-ca'),
+            'time-24': randomValuesArray[12][getRandomInt(0, 3)],
+            'time-12': randomValuesArray[13][getRandomInt(0, 3)],
+            'color': randomValuesArray[14][getRandomInt(0, 3)]
+        };
+        
+        // store.put({id: randomId, data: randomData});
 
-    // store.put({id: id, data: data});
+        showPossibleIds();
 
-    // showPossibleIds();
+    };
 
-}
+};
