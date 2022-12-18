@@ -258,37 +258,9 @@ function addClient(id) {
 
     getData.onsuccess = function() {
 
-        const filter = document.getElementById('filter-id').value;
-        let adding = filter.length > 0 ? false : true;
+        if (!matchFilter(getData.result)) return;
 
-        // if (filter.length > 0) {
-        //     if (getData.result.id.includes(filter)) adding = true;
-        //     else {
-
-        //     };
-        // };
-        for (let id of getIds.result) {
-            if (filter.length <= 0) {
-                ids.push(id.id);
-                continue;
-            } else {
-                let correct = false;
-                if (id.id.includes(filter)) {
-                    ids.push(id.id);
-                    continue;
-                }
-                for (let fieldName of fieldNames) {
-                    if (id.data[fieldName].includes(filter)) {
-                        correct = true;
-                        break;
-                    }
-                }
-                if (correct) {
-                    ids.push(id.id);
-                    continue;
-                }
-            };
-        }
+        if (possibleIds.childElementCount <= 0) possibleIdsHeader.textContent = 'Lista Klientów';
 
         let clientDataHTML = ``;
 
@@ -354,7 +326,7 @@ function generateRandomClient() {
         
         store.put({id: randomId, data: randomData});
 
-        showPossibleIds();
+        addClient(randomId);
 
     };
 
