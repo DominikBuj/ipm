@@ -28,46 +28,10 @@ function showPossibleIds() {
     let transaction = database.transaction("MyObjectStore", "readwrite");
     let store = transaction.objectStore("MyObjectStore");
 
-    let ids = [];
-    
     const getIds = store.getAll();
-    getIds.onsuccess = () => {
-        ids = getIds.result.filter(result => matchFilter(result)).map(result => result.id);
-        if (ids.length > 0) {
-            possibleIdsHeader.textContent = 'Lista Klientów';
-            for (let id of ids) {
-    
-                let clientDataHTML = ``;
-                let getData = store.get(id);
-    
-                getData.onsuccess = function() {
-    
-                    for (let fieldName of fieldNames) {
-                        clientDataHTML += `
-                            <span style="font-weight: 16px; line-height: 24px;">${getFieldLabel(fieldName)}:
-                                <span style="font-weight: 16px; line-height: 24px; font-weight: normal;">${getData.result.data[fieldName]}</span>
-                            </span>
-                        `;
-                    };
-    
-                    possibleIds.innerHTML += `
-                        <div class="flex-container-column form-cell">
-                            <div class="flex-container-row" style="padding: 8px; border-bottom: 3px solid rgb(44, 44, 44);">
-                                <span style="flex: 1 1 auto;">${id}</span>
-                                <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
-                                <button style="width: 196px; margin: 0;" onclick="deleteClientData('${id}');">Usuń dane klienta</button>
-                            </div>
-                            ${clientDataHTML}
-                        </div>
-                    `;
-    
-                };
-    
-            };
-        };
-    };
+    getIds.onsuccess = () => getIds.result.forEach(result => addClient(result.id));
 
-}
+};
 
 function loadClientData(id) {
     
