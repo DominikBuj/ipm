@@ -56,15 +56,21 @@ function loadClientData(id) {
 
 function deleteClientData(id) {
 
-    let database = open.result;
-    let transaction = database.transaction("MyObjectStore", "readwrite");
-    let store = transaction.objectStore("MyObjectStore");
+    const database = open.result;
+    const transaction = database.transaction("MyObjectStore", "readwrite");
+    const store = transaction.objectStore("MyObjectStore");
 
-    let deleteData = store.delete(id);
+    const deleteData = store.delete(id);
 
-    showPossibleIds();
+    deleteData.onsuccess = () => {
+        document.getElementById(id).remove();
+        const filter = document.getElementById('filter-id').value;
+        if (possibleIds.childElementCount <= 0) possibleIdsHeader.textContent = filter.length <= 0 ? 'Brak Klientów' : 'Brak Wyszukiwanych Klientów';
+    };
 
-}
+    // showPossibleIds();
+
+};
 
 function saveClientData() {
 
@@ -237,7 +243,7 @@ function addClient(id) {
         }
 
         possibleIds.innerHTML += `
-            <div class="flex-container-column form-cell">
+            <div class="flex-container-column form-cell" id="${id}">
                 <div class="flex-container-row" style="padding: 8px; border-bottom: 3px solid rgb(44, 44, 44);">
                     <span style="flex: 1 1 auto;">${id}</span>
                     <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
