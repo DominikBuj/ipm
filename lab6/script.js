@@ -184,35 +184,7 @@ const randomClientNames = [
     'Sylwia'
 ];
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function randomizeInputs() {
-
-    document.getElementById('email').value = randomValuesArray[0][getRandomInt(0, 3)];
-    document.getElementById('area-code').value = randomValuesArray[1][getRandomInt(0, 3)];
-    document.getElementById('nip').value = randomValuesArray[2][getRandomInt(0, 3)];
-    document.getElementById('id').value = randomValuesArray[3][getRandomInt(0, 3)];
-    document.getElementById('ipv4').value = randomValuesArray[4][getRandomInt(0, 3)];
-    document.getElementById('website').value = randomValuesArray[5][getRandomInt(0, 3)];
-    document.getElementById('windows-path-small').value = randomValuesArray[6][getRandomInt(0, 3)];
-    document.getElementById('windows-path').value = randomValuesArray[7][getRandomInt(0, 3)];
-    document.getElementById('file-path').value = randomValuesArray[8][getRandomInt(0, 3)];
-    document.getElementById('ipv6').value = randomValuesArray[9][getRandomInt(0, 3)];
-    document.getElementById('phone-number').value = randomValuesArray[10][getRandomInt(0, 3)];
-    document.getElementById('date').value = randomValuesArray[11][getRandomInt(0, 3)];
-    document.getElementById('date-limited').value = new Date(new Date().setDate(currentWeekMonday.getDate() + getRandomInt(0, 4))).toLocaleDateString('en-ca');
-    document.getElementById('time-24').value = randomValuesArray[12][getRandomInt(0, 3)];
-    document.getElementById('time-12').value = randomValuesArray[13][getRandomInt(0, 3)];
-    document.getElementById('color').value = randomValuesArray[14][getRandomInt(0, 3)];
-
-    validateWindowsPath();
-    validateWebsite();
-
-}
+const getRandomInt = (min, max) => Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + Math.ceil(min);
 
 function validateWindowsPath() {
     if (document.getElementById('windows-path').value.match(/[a-zA-z]:\\(windows|winnt|win|dos|msdos)(\\\w+)*/i)) {
@@ -363,7 +335,7 @@ function generateRandomClient() {
         
         store.put({id: randomId, data: randomData});
 
-        addClient(randomId);
+        showPossibleIds();
 
     };
 
