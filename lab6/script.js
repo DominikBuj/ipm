@@ -64,63 +64,12 @@ function showPossibleIds() {
                 getData.onsuccess = function() {
     
                     for (let fieldName of fieldNames) {
-                        let fieldLabel = '';
-                        switch (fieldName) {
-                            case 'email':
-                                fieldLabel = 'Email';
-                                break;
-                            case 'area-code':
-                                fieldLabel = 'Kod pocztowy';
-                                break;
-                            case 'nip':
-                                fieldLabel = 'NIP';
-                                break;
-                            case 'id':
-                                fieldLabel = 'Numer Dowodu';
-                                break;
-                            case 'ipv4':
-                                fieldLabel = 'IPv4';
-                                break;
-                            case 'website':
-                                fieldLabel = 'Strona www';
-                                break;
-                            case 'windows-path-small':
-                                fieldLabel = 'Scieżka dysku (małe litery)';
-                                break;
-                            case 'windows-path':
-                                fieldLabel = 'Scieżka dysku (małe i duże litery)';
-                                break;
-                            case 'file-path':
-                                fieldLabel = 'Scieżka pliku w folderze etc';
-                                break;
-                            case 'ipv6':
-                                fieldLabel = 'IPv6';
-                                break;
-                            case 'phone-number':
-                                fieldLabel = 'Numer telefonu';
-                                break;
-                            case 'date':
-                                fieldLabel = 'Data';
-                                break;
-                            case 'date-limited':
-                                fieldLabel = 'Data (dni pracujące)';
-                                break;
-                            case 'time-24':
-                                fieldLabel = 'Godzina (24godz)';
-                                break;
-                            case 'time-12':
-                                fieldLabel = 'Godzina (12godz)';
-                                break;
-                            case 'color':
-                                fieldLabel = 'Kolor';
-                                break;
-                        }
                         clientDataHTML += `
-                            <span style="font-weight: 16px; line-height: 24px;">${fieldLabel}:
-                                <span style="font-weight: 16px; line-height: 24px; font-weight: normal;"> ${getData.result.data[fieldName]}</span>
+                            <span style="font-weight: 16px; line-height: 24px;">${getFieldLabel(fieldName)}:
+                                <span style="font-weight: 16px; line-height: 24px; font-weight: normal;">${getData.result.data[fieldName]}</span>
                             </span>
                         `;
-                    }
+                    };
     
                     possibleIds.innerHTML += `
                         <div class="flex-container-column form-cell">
@@ -131,7 +80,7 @@ function showPossibleIds() {
                             </div>
                             ${clientDataHTML}
                         </div>
-                    `
+                    `;
     
                 };
     
@@ -318,6 +267,63 @@ document.querySelectorAll('.form-input.draggable').forEach(inputElement => {
 
 });
 
+function getFieldLabel(fieldName) {
+    switch (fieldName) {
+        case 'email': return 'Email';
+        case 'area-code': return 'Kod pocztowy';
+        case 'nip': return 'NIP';
+        case 'id': return 'Numer Dowodu';
+        case 'ipv4': return 'IPv4';
+        case 'website': return 'Strona www';
+        case 'windows-path-small': return 'Scieżka dysku (małe litery)';
+        case 'windows-path': return 'Scieżka dysku (małe i duże litery)';
+        case 'file-path': return 'Scieżka pliku w folderze etc';
+        case 'ipv6': return 'IPv6';
+        case 'phone-number': return 'Numer telefonu';
+        case 'date': return 'Data';
+        case 'date-limited': return 'Data (dni pracujące)';
+        case 'time-24': return 'Godzina (24godz)';
+        case 'time-12': return 'Godzina (12godz)';
+        case 'color': return 'Kolor';
+        default: return '';
+    };
+};
+
+function addClient(id) {
+
+    let database = open.result;
+    let transaction = database.transaction("MyObjectStore", "readwrite");
+    let store = transaction.objectStore("MyObjectStore");
+
+    let getData = store.get(id);
+
+    getData.onsuccess = function() {
+    
+        let clientDataHTML = ``;
+
+        for (let fieldName of fieldNames) {
+            clientDataHTML += `
+                <span style="font-weight: 16px; line-height: 24px;">${getFieldLabel(fieldName)}:
+                    <span style="font-weight: 16px; line-height: 24px; font-weight: normal;">${getData.result.data[fieldName]}</span>
+                </span>
+            `;
+        }
+
+        possibleIds.innerHTML += `
+            <div class="flex-container-column form-cell">
+                <div class="flex-container-row" style="padding: 8px; border-bottom: 3px solid rgb(44, 44, 44);">
+                    <span style="flex: 1 1 auto;">${id}</span>
+                    <button style="width: 196px; margin: 0 8px 0 0;" onclick="loadClientData('${id}');">Wczytaj dane klienta</button>
+                    <button style="width: 196px; margin: 0;" onclick="deleteClientData('${id}');">Usuń dane klienta</button>
+                </div>
+                ${clientDataHTML}
+            </div>
+        `
+
+    };
+
+};
+
 function generateRandomClient() {
     
     let database = open.result;
@@ -357,7 +363,7 @@ function generateRandomClient() {
         
         store.put({id: randomId, data: randomData});
 
-        showPossibleIds();
+        addClient(randomId);
 
     };
 
